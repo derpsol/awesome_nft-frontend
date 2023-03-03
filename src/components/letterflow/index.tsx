@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useEffect } from "react";
 import { Box, Typography } from "@mui/material";
-import divider from '../../assets/images/divider.png'
+import divider from "../../assets/images/divider.png";
 
 const Letters = [
   "News scroll",
@@ -13,33 +13,40 @@ const Letters = [
   "News scrolling xxxxxx",
 ];
 
-
 function LetterFlow() {
   const upperRef = useRef<HTMLDivElement>(null);
   const lowerRef = useRef<HTMLDivElement>(null);
   let upperlength: number = -1392;
   let lowerlength: number = 0;
   const motionHandler = () => {
-    if(upperRef.current) {
-      upperlength ++;
-      if(upperlength > 0) upperlength = -1392;
+    if (upperRef.current) {
+      upperlength++;
+      if (upperlength > 0) upperlength = -1392;
       upperRef.current.style.transform = `translate(${upperlength}px)`;
     }
-    if(lowerRef.current) {
+    if (lowerRef.current) {
       lowerlength -= 2;
-      if(lowerlength < -1392) lowerlength = 0;
+      if (lowerlength < -1392) lowerlength = 0;
       lowerRef.current.style.transform = `translate(${lowerlength}px)`;
     }
-  }
-  
+  };
+
   useEffect(() => {
     setInterval(motionHandler, 100);
-  }, [])
-    return (
+  }, []);
+  return (
     <Box sx={{ position: "relative" }}>
-      <Box sx={{ overflow: "hidden", display: 'flex', height: '112px', flexDirection: 'column', justifyContent: 'space-around' }}>
-        <Box display='flex' ref={upperRef}>
-        {Letters.map((letter, index) => (
+      <Box
+        sx={{
+          overflow: "hidden",
+          display: "flex",
+          height: { xs: "80px", md: "112px" },
+          flexDirection: "column",
+          justifyContent: "space-around",
+        }}
+      >
+        <Box display="flex" ref={upperRef}>
+          {Letters.map((letter, index) => (
             <Box display="flex" alignItems="center" key={index}>
               <Box
                 width="8px"
@@ -50,7 +57,12 @@ function LetterFlow() {
                   backgroundColor: "white",
                 }}
               />
-              <Typography fontFamily="Inter" fontSize="20px" color="white" whiteSpace='nowrap'>
+              <Typography
+                fontFamily="Inter"
+                fontSize="20px"
+                color="white"
+                whiteSpace="nowrap"
+              >
                 {letter}
               </Typography>
             </Box>
@@ -66,18 +78,20 @@ function LetterFlow() {
                   backgroundColor: "white",
                 }}
               />
-              <Typography fontFamily="Inter" fontSize="20px" color="white" whiteSpace='nowrap'>
+              <Typography
+                fontFamily="Inter"
+                fontSize="20px"
+                color="white"
+                whiteSpace="nowrap"
+              >
                 {letter}
               </Typography>
             </Box>
           ))}
         </Box>
-        <Box
-          component='img'
-          src={divider}
-        />
-        <Box display='flex' ref={lowerRef}>
-        {Letters.map((letter, index) => (
+        <Box component="img" src={divider} />
+        <Box display="flex" ref={lowerRef}>
+          {Letters.map((letter, index) => (
             <Box display="flex" alignItems="center" key={index}>
               <Box
                 width="8px"
@@ -88,7 +102,12 @@ function LetterFlow() {
                   backgroundColor: "white",
                 }}
               />
-              <Typography fontFamily="Inter" fontSize="20px" color="white" whiteSpace='nowrap'>
+              <Typography
+                fontFamily="Inter"
+                fontSize="20px"
+                color="white"
+                whiteSpace="nowrap"
+              >
                 {letter}
               </Typography>
             </Box>
@@ -104,7 +123,12 @@ function LetterFlow() {
                   backgroundColor: "white",
                 }}
               />
-              <Typography fontFamily="Inter" fontSize="20px" color="white" whiteSpace='nowrap'>
+              <Typography
+                fontFamily="Inter"
+                fontSize="20px"
+                color="white"
+                whiteSpace="nowrap"
+              >
                 {letter}
               </Typography>
             </Box>
@@ -117,8 +141,8 @@ function LetterFlow() {
           top: "0",
           backgroundColor: "black",
           width: "100%",
-          height: "112px",
-          borderRadius: "28px",
+          height: { xs: "80px", md: "112px" },
+          borderRadius: { xs: '12px', md: '28px'},
           zIndex: "-1",
         }}
       ></Box>
