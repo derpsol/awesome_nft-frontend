@@ -17,20 +17,44 @@ const Letters = [
 function LetterFlow() {
   const upperRef = useRef<HTMLDivElement>(null);
   const lowerRef = useRef<HTMLDivElement>(null);
-  
-  function motionHandler() {
+  let upperlength: number = -1392;
+  let lowerlength: number = 0;
+  const motionHandler = () => {
     if(upperRef.current) {
-      upperRef.current.style.transform = 'translate(10px)';
+      upperlength ++;
+      if(upperlength > 0) upperlength = -1392;
+      upperRef.current.style.transform = `translate(${upperlength}px)`;
+    }
+    if(lowerRef.current) {
+      lowerlength -= 2;
+      if(lowerlength < -1392) lowerlength = 0;
+      lowerRef.current.style.transform = `translate(${lowerlength}px)`;
     }
   }
   
   useEffect(() => {
-    setInterval(motionHandler(), 100)
+    setInterval(motionHandler, 100);
   }, [])
     return (
     <Box sx={{ position: "relative" }}>
       <Box sx={{ overflow: "hidden", display: 'flex', height: '112px', flexDirection: 'column', justifyContent: 'space-around' }}>
         <Box display='flex' ref={upperRef}>
+        {Letters.map((letter, index) => (
+            <Box display="flex" alignItems="center" key={index}>
+              <Box
+                width="8px"
+                height="8px"
+                borderRadius="50%"
+                mx="12px"
+                sx={{
+                  backgroundColor: "white",
+                }}
+              />
+              <Typography fontFamily="Inter" fontSize="20px" color="white" whiteSpace='nowrap'>
+                {letter}
+              </Typography>
+            </Box>
+          ))}
           {Letters.map((letter, index) => (
             <Box display="flex" alignItems="center" key={index}>
               <Box
@@ -53,6 +77,22 @@ function LetterFlow() {
           src={divider}
         />
         <Box display='flex' ref={lowerRef}>
+        {Letters.map((letter, index) => (
+            <Box display="flex" alignItems="center" key={index}>
+              <Box
+                width="8px"
+                height="8px"
+                borderRadius="50%"
+                mx="12px"
+                sx={{
+                  backgroundColor: "white",
+                }}
+              />
+              <Typography fontFamily="Inter" fontSize="20px" color="white" whiteSpace='nowrap'>
+                {letter}
+              </Typography>
+            </Box>
+          ))}
           {Letters.map((letter, index) => (
             <Box display="flex" alignItems="center" key={index}>
               <Box
