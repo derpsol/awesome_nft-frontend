@@ -14,6 +14,8 @@ function Home() {
       />
       <Typography
         textTransform='uppercase'
+        fontFamily='Inter'
+        fontSize='36px'
       >
         awesome_nft.fi
       </Typography>
