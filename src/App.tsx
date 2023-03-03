@@ -1,11 +1,14 @@
 import React from 'react';
 import Home from './pages/home'
+import { Container } from "@mui/material";
+import Header from "./components/header";
 
 function App() {
   return (
-    <React.StrictMode>
+    <Container maxWidth='xl'>
+      <Header/>
       <Home/>
-    </React.StrictMode>
+    </Container>
   );
 }
 
