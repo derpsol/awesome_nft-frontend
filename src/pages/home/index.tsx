@@ -1,7 +1,7 @@
-import React from "react";
-import { Box, Container, OutlinedInput, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import grid_back from '../../assets/images/grid_back.png'
 import call_pic from '../../assets/images/callout_box.png'
+import LetterFlow from "../../components/letterflow";
 
 function Home() {
   return (
@@ -92,6 +92,7 @@ function Home() {
           </Typography>
         </Box>
       </Box>
+      <LetterFlow/>
     </Box>
   );
 }
