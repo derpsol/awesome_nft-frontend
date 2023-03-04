@@ -65,7 +65,7 @@ function Home() {
         <Typography
           sx={{
             fontFamily: "Inter",
-            fontSize: { xs: "40px", sm: "54px", md: "72px", lg: "102px" },
+            fontSize: { xs: "40px", sm: "44px", md: "72px", lg: "102px" },
             fontWeight: "600",
           }}
         >
@@ -81,7 +81,7 @@ function Home() {
           <Typography
             sx={{
               fontFamily: "Inter",
-              fontSize: { xs: "40px", sm: "54px", md: "72px", lg: "102px" },
+              fontSize: { xs: "40px", sm: "44px", md: "72px", lg: "102px" },
               fontWeight: "600",
             }}
           >
@@ -94,7 +94,7 @@ function Home() {
               textShadow:
                 "-1.2px 0 black, 0 1.2px black, 1.2px 0 black, 0 -1.2px black",
               fontFamily: "Inter",
-              fontSize: { xs: "40px", sm: "54px", md: "72px", lg: "102px" },
+              fontSize: { xs: "40px", sm: "44px", md: "72px", lg: "102px" },
               fontWeight: "600",
               mt: { xs: "-12px", sm: "0px" },
             }}
@@ -160,6 +160,9 @@ function Home() {
                 fontFamily: 'Inter',
                 borderRight: '1px dashed #141414',
                 '&:focus' : {
+                  backgroundColor: '#E1E1E1'
+                },
+                '&:hover' : {
                   backgroundColor: '#E1E1E1'
                 }
               }}
