@@ -8,6 +8,7 @@ import {
 import grid_back from "../../assets/images/grid_back.png";
 import call_pic from "../../assets/images/callout_box.png";
 import LetterFlow from "../../components/letterflow";
+import SearchContent from "../../components/searchContent";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 function searchFront() {
@@ -108,7 +109,14 @@ function Home() {
         </Box>
       </Box>
       <LetterFlow />
-      <Box mt="120px" display='flex' justifyContent='space-around'>
+      <Box mt="120px"
+        sx={{
+          display: 'flex',
+          justifyContent: { xs: 'center', md: 'space-around' },
+          flexDirection: { xs: 'column', md: 'row' },
+          alignItems: 'center'
+        }}
+        >
         <TextField
           name={"text"}
           variant="outlined"
@@ -118,14 +126,14 @@ function Home() {
             padding: '0px',
             borderRadius: '30px',
             border: '1px solid black',
-            width: '75%',
+            width: { xs: '90%', md: '75%'},
             height: '86px',
             overflow: 'hidden',
             'input': {
               fontSize: '22px',
               lineHeight: '26px',
               fontFamily: 'Inter',
-              ml: '52px',
+              ml: { xs: '20px', sm: '52px' },
               '&::placeholder': {
                 fontSize: '22px',
                 lineHeight: '26px',
@@ -149,7 +157,7 @@ function Home() {
               sx={{
                 backgroundColor: '#E1E1E1',
                 color: '#141414',
-                px: '64px',
+                px: { xs: '35px', sm: '64px'},
                 py: '30px',
                 ml: '-20px',
                 fontSize: '22px',
@@ -165,7 +173,8 @@ function Home() {
         />
         <Button
           sx={{
-            width: '20%',
+            width: { xs: '90%', sm: '50%', md: '20%' },
+            height: '86px',
             border: '1px solid black',
             borderRadius: '30px',
             fontFamily: 'Inter',
@@ -173,16 +182,24 @@ function Home() {
             fontWeight: '600',
             color: '#141414',
             display: 'flex',
+            alignItems: 'center',
+            mt: { xs: '10px', md: '0px' }
           }}
         >
           <Box width='60%' ml='10%'>
             Category
           </Box>
-          <Box width="30%">
+          <Box
+            display='flex'
+            width="30%"
+            alignItems='center'
+            justifyContent='center'
+          >
             <ArrowForwardIosIcon/>
           </Box>
         </Button>
       </Box>
+      <SearchContent/>
     </Box>
   );
 }
