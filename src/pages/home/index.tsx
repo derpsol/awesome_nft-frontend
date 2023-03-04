@@ -2,7 +2,6 @@ import {
   Box,
   Typography,
   TextField,
-  IconButton,
   Button,
 } from "@mui/material";
 import grid_back from "../../assets/images/grid_back.png";
@@ -10,10 +9,6 @@ import call_pic from "../../assets/images/callout_box.png";
 import LetterFlow from "../../components/letterflow";
 import SearchContent from "../../components/searchContent";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-
-function searchFront() {
-  return <Box></Box>;
-}
 
 function Home() {
   return (

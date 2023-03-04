@@ -1,12 +1,5 @@
-import { useState } from "react";
-import {
-  Box,
-  Grid,
-  Typography,
-  ImageList,
-  ImageListItem,
-  Button,
-} from "@mui/material";
+import { useEffect, useRef, useState, useLayoutEffect } from "react";
+import { Box, Typography, Button } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import CachedIcon from "@mui/icons-material/Cached";
 import Masonry from "@mui/lab/Masonry";
@@ -310,13 +303,51 @@ const Datas = [
 
 function SearchContent() {
   const [marsonryHeight, setMasonryHeight] = useState(700);
+  const [multinum, setMultiNum] = useState(1);
+  const [visible, setVisible] = useState(true);
+  const ref = useRef<HTMLInputElement>(null);
+  const [currentHeight, setCurrentHeight] = useState(0);
+  const [masonryWidth, setMasonryWidth] = useState(0);
+
+  useEffect(() => {
+    if (ref.current) {
+      setCurrentHeight(ref.current.clientHeight);
+      if (ref.current.clientWidth < 425) {
+        setMultiNum(1);
+      } else if (ref.current.clientWidth < 768) {
+        setMultiNum(2);
+      } else if (ref.current.clientWidth < 1024) {
+        setMultiNum(3);
+      } else {
+        setMultiNum(4);
+      }
+      console.log(marsonryHeight, multinum, ref.current.clientHeight);
+      if (marsonryHeight >= ref.current.clientHeight) {
+        setMasonryHeight(ref.current.clientHeight);
+        setVisible(false);
+      } else {
+        setVisible(true);
+      }
+    }
+    function getWidth() {
+      setMasonryWidth(window.innerWidth);
+    }
+    window.addEventListener("resize", getWidth);
+    getWidth();
+    return () => window.removeEventListener("resize", getWidth);
+  }, [marsonryHeight, masonryWidth]);
 
   return (
-    <Box mt="80px" position="relative">
+    <Box
+      mt="80px"
+      position="relative"
+      sx={{ overflow: "hidden", height: marsonryHeight }}
+    >
       <Masonry
-        sx={{ m: 0, overflow: "hidden", height: marsonryHeight, }}
+        sx={{ m: 0 }}
         columns={{ xs: 1, sm: 2, md: 3, lg: 4 }}
         spacing={2}
+        ref={ref}
       >
         {Datas.map((data, index) => {
           return (
@@ -399,18 +430,38 @@ function SearchContent() {
         })}
       </Masonry>
       <Box
+        textAlign="center"
         sx={{
           backgroundImage:
-            "linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0))",
+            "linear-gradient(to top, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0))",
           position: "absolute",
           bottom: 0,
           height: "500px",
           width: "100%",
+          display: visible ? "block" : "none",
         }}
       >
-        <Box component="button" bgcolor="#141414" borderRadius="10px">
+        <Button
+          sx={{
+            bgcolor: "#141414",
+            borderRadius: "32px",
+            fontFamily: "Inter",
+            fontSize: "18px",
+            color: "white",
+            textTransform: "uppercase",
+            mt: "400px",
+            width: "200px",
+            height: "54px",
+            "&:hover": {
+              bgcolor: "#2b2b2b",
+            },
+          }}
+          onClick={() => {
+            setMasonryHeight(marsonryHeight + 700);
+          }}
+        >
           show more +
-        </Box>
+        </Button>
       </Box>
     </Box>
   );
