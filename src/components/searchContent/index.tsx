@@ -321,7 +321,6 @@ function SearchContent() {
       } else {
         setMultiNum(4);
       }
-      console.log(marsonryHeight, multinum, ref.current.clientHeight);
       if (marsonryHeight >= ref.current.clientHeight) {
         setMasonryHeight(ref.current.clientHeight);
         setVisible(false);

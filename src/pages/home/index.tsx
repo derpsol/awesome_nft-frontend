@@ -56,7 +56,7 @@ function Home() {
       </Box>
       <Box
         sx={{
-          mt: { md: "-96px", lg: "-160px" },
+          mt: { md: "-72px", lg: "-100px" },
           mb: { xs: "30px", md: "150px" },
           mx: { xs: "auto", md: "0px" },
           textAlign: { xs: "center", md: "left" },
@@ -65,7 +65,7 @@ function Home() {
         <Typography
           sx={{
             fontFamily: "Inter",
-            fontSize: { xs: "40px", sm: "44px", md: "72px", lg: "102px" },
+            fontSize: { xs: "40px", sm: "44px", md: "72px", lg: "90px" },
             fontWeight: "600",
           }}
         >
@@ -81,7 +81,7 @@ function Home() {
           <Typography
             sx={{
               fontFamily: "Inter",
-              fontSize: { xs: "40px", sm: "44px", md: "72px", lg: "102px" },
+              fontSize: { xs: "40px", sm: "44px", md: "64px", lg: "90px" },
               fontWeight: "600",
             }}
           >
@@ -94,7 +94,7 @@ function Home() {
               textShadow:
                 "-1.2px 0 black, 0 1.2px black, 1.2px 0 black, 0 -1.2px black",
               fontFamily: "Inter",
-              fontSize: { xs: "40px", sm: "44px", md: "72px", lg: "102px" },
+              fontSize: { xs: "40px", sm: "44px", md: "72px", lg: "90px" },
               fontWeight: "600",
               mt: { xs: "-12px", sm: "0px" },
             }}
