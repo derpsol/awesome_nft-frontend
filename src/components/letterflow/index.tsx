@@ -1,5 +1,4 @@
-import { useRef } from "react";
-import { useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { Box, Typography } from "@mui/material";
 import divider from "../../assets/images/divider.png";
 
@@ -16,12 +15,14 @@ const Letters = [
 function LetterFlow() {
   const upperRef = useRef<HTMLDivElement>(null);
   const lowerRef = useRef<HTMLDivElement>(null);
-  let upperlength: number = -1392;
+  let constUpperLength: number;
+  let constLowerLength: number;
+  let upperlength: number = -1200;
   let lowerlength: number = 0;
   const motionHandler = () => {
     if (upperRef.current) {
       upperlength++;
-      if (upperlength > 0) upperlength = -1392;
+      if (upperlength > (constUpperLength - 1200)) upperlength = -1200;
       upperRef.current.style.transform = `translate(${upperlength}px)`;
     }
     if (lowerRef.current) {
@@ -32,6 +33,12 @@ function LetterFlow() {
   };
 
   useEffect(() => {
+    if (upperRef.current) {
+      constUpperLength = upperRef.current.clientWidth / 2;
+    }
+    if (lowerRef.current) {
+      constLowerLength = lowerRef.current.clientWidth / 2;
+    }
     setInterval(motionHandler, 100);
   }, []);
   return (
