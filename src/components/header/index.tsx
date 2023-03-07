@@ -1,8 +1,8 @@
-import { useRef, useEffect } from "react";
-import { Box, Typography, Button, Link } from "@mui/material";
+import { useRef, useEffect, useState } from "react";
+import { Box, Typography, Button, Link, Modal } from "@mui/material";
 import logo from "../../assets/images/logo.png";
 import useResponsive from "../../hook/useResponsive";
-import MenuIcon from '@mui/icons-material/Menu';
+import MenuIcon from "@mui/icons-material/Menu";
 
 const Letters = [
   "News scroll",
@@ -14,9 +14,12 @@ const Letters = [
   "News scrolling xxxxxx",
 ];
 
+const menuItems = ["home", "magazine", "faqs", "about"];
+
 function Header() {
-  const isDesktop = useResponsive('up', 'md');
+  const isDesktop = useResponsive("up", "md");
   const upperRef = useRef<HTMLDivElement>(null);
+  const [open, setOpen] = useState(false);
   let upperlength: number = 0;
   let constUpperLength: number;
 
@@ -36,7 +39,7 @@ function Header() {
   }, []);
 
   return (
-    <Box display="flex" alignItems="center" my='40px'>
+    <Box display="flex" alignItems="center" my="40px">
       <Box display="flex" alignItems="center">
         {/* <Box
           component="img"
@@ -53,6 +56,7 @@ function Header() {
           fontFamily="Inter"
           sx={{
             fontSize: { xs: "18px", sm: "28px" },
+            display: { xs: 'none', sm: 'block' }
           }}
         >
           awesome_nft.fi
@@ -88,89 +92,108 @@ function Header() {
           ))}
         </Box>
       </Box>
-      {isDesktop ? 
-      <Box display="flex" alignItems='center'>
-        <Box display="flex">
-          <Link
-            fontFamily="Inter"
+      {isDesktop ? (
+        <Box display="flex" alignItems="center">
+          <Box display="flex">
+            {menuItems.map((menu, index) => (
+              <Link
+                fontFamily="Inter"
+                sx={{
+                  fontSize: { xs: "16px", sm: "20px" },
+                  mx: "12px",
+                  textDecoration: "none",
+                  color: "black",
+                  textTransform: "uppercase",
+                  "&:hover": {
+                    color: "blue",
+                    cursor: "pointer",
+                  },
+                }}
+                key={index}
+              >
+                {menu}
+              </Link>
+            ))}
+          </Box>
+          <Button
             sx={{
+              backgroundColor: "black",
+              color: "white",
               fontSize: { xs: "16px", sm: "20px" },
-              mx: '12px',
-              textDecoration: 'none',
-              color: 'black',
-              '&:hover': {
-                color: 'blue'
-              }
+              ml: "8px",
+              px: "20px",
+              py: "4px",
+              "&:hover": {
+                backgroundColor: "black",
+                opacity: "0.8",
+              },
             }}
           >
-            HOME
-          </Link>
-          <Link
-            fontFamily="Inter"
-            sx={{
-              fontSize: { xs: "16px", sm: "20px" },
-              mx: '12px',
-              textDecoration: 'none',
-              color: 'black',
-              '&:hover': {
-                color: 'blue'
-              }
-            }}
-          >
-            MAGAZINE
-          </Link>
-          <Link
-            fontFamily="Inter"
-            sx={{
-              fontSize: { xs: "16px", sm: "20px" },
-              mx: '12px',
-              textDecoration: 'none',
-              color: 'black',
-              '&:hover': {
-                color: 'blue'
-              }
-            }}
-          >
-            FAQS
-          </Link>
-          <Link
-            fontFamily="Inter"
-            sx={{
-              fontSize: { xs: "16px", sm: "20px" },
-              mx: '12px',
-              textDecoration: 'none',
-              color: 'black',
-              '&:hover': {
-                color: 'blue'
-              }
-            }}
-          >
-            ABOUT
-          </Link>
+            Join
+          </Button>
         </Box>
-        <Button
-          sx={{
-            backgroundColor: 'black',
-            color: 'white',
-            fontSize: { xs: "16px", sm: "20px" },
-            ml: '8px',
-            px: '20px',
-            py: '4px',
-            '&:hover': {
-              backgroundColor: 'black',
-              opacity: '0.8',
-            }
-          }}          
-        >
-          Join
-        </Button>
-      </Box> :
-      <Box>
-        <Button>
-          <MenuIcon/>
-        </Button>
-      </Box>
-      }
+      ) : (
+        <Box mx="12px">
+          <Button
+            variant="outlined"
+            onClick={() => setOpen(true)}
+            sx={{ p: "8px" }}
+          >
+            <MenuIcon />
+          </Button>
+          <Modal
+            aria-labelledby="modal-title"
+            aria-describedby="modal-desc"
+            open={open}
+            onClose={() => setOpen(false)}
+            sx={{
+              display: "flex",
+              justifyContent: "right",
+              mt: "84px",
+              mr: "36px",
+            }}
+          >
+            <Box
+              bgcolor="white"
+              width="250px"
+              height="200px"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              borderRadius="15px"
+            >
+              <Box textAlign="center">
+                {menuItems.map((menu, index) => (
+                  <Link
+                    sx={{
+                      textDecoration: "none",
+                      color: "black",
+                      "&:hover": {
+                        cursor: "pointer",
+                      },
+                    }}
+                    onClick={() => {
+                      setOpen(false);
+                    }}
+                  >
+                    <Typography
+                      fontFamily="Inter"
+                      fontSize="20px"
+                      textTransform="uppercase"
+                      px="40px"
+                      py="8px"
+                      key={index}
+                      borderBottom={index < 3 ? "1px solid black" : ""}
+                    >
+                      {menu}
+                    </Typography>
+                  </Link>
+                ))}
+              </Box>
+            </Box>
+          </Modal>
+        </Box>
+      )}
     </Box>
   );
 }
